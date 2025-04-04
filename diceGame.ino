@@ -1,3 +1,5 @@
+//must use small OLED square screen
+//must use adafruit ssd1306 library
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
