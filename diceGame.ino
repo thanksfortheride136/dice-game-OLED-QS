@@ -12,7 +12,7 @@ Adafruit_SSD1306 oled(128, 64, &Wire, -1);
 
 void setup() {
   // Initialize OLED screen
-  if (!lcd.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
+  if (!oled.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
     for (;;); // Halt if screen isn't found
   }
 
