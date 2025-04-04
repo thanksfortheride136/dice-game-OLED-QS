@@ -8,7 +8,7 @@ int button_pin = 10;
 long dice_one, dice_two, player_score, computer_score;
 
 // Create display object (128x64 pixels, using I2C)
-Adafruit_SSD1306 lcd(128, 64, &Wire, -1);
+Adafruit_SSD1306 oled(128, 64, &Wire, -1);
 
 void setup() {
   // Initialize OLED screen
@@ -17,13 +17,13 @@ void setup() {
   }
 
   // Initial screen message
-  lcd.clearDisplay();
-  lcd.setTextSize(1);
-  lcd.setTextColor(SSD1306_WHITE);
-  lcd.setCursor(0, 0);
-  lcd.println(F("Press Button To"));
-  lcd.println(F("Roll Dice!"));
-  lcd.display();
+  oled.clearDisplay();
+  oled.setTextSize(1);
+  oled.setTextColor(SSD1306_WHITE);
+  oled.setCursor(0, 0);
+  oled.println(F("Press Button To"));
+  oled.println(F("Roll Dice!"));
+  oled.display();
   randomSeed(analogRead(0));
   Serial.begin(9600);
   pinMode(button_pin, INPUT_PULLUP);
@@ -41,7 +41,7 @@ void readButton() {
 }
 
 void diceRoll() {
-  lcd.clearDisplay();
+  oled.clearDisplay();
   dice_one = random(1, 7);  // 1 to 6
   dice_two = random(1, 7);
 
@@ -51,24 +51,24 @@ void diceRoll() {
   Serial.println("Dice 1: " + String(dice_one));
   Serial.println("Dice 2: " + String(dice_two));
 
-  lcd.setTextSize(1);
-  lcd.setTextColor(SSD1306_WHITE);
-  lcd.setCursor(0, 0);
-  lcd.print("Player Dice: ");
-  lcd.println(dice_one);
+  oled.setTextSize(1);
+  oled.setTextColor(SSD1306_WHITE);
+  oled.setCursor(0, 0);
+  oled.print("Player Dice: ");
+  oled.println(dice_one);
 
-  lcd.setCursor(0, 20);
-  lcd.print("Computer Dice: ");
-  lcd.println(dice_two);
+  oled.setCursor(0, 20);
+  oled.print("Computer Dice: ");
+  oled.println(dice_two);
 
-  lcd.setCursor(0, 40);
-  lcd.println("Scores: ");
-  lcd.setCursor(0, 50);
-  lcd.println("Player: " + String(player_score));
-  lcd.setCursor(62, 50);
-  lcd.println("Computer: " + String(computer_score));
+  oled.setCursor(0, 40);
+  oled.println("Scores: ");
+  oled.setCursor(0, 50);
+  oled.println("Player: " + String(player_score));
+  oled.setCursor(62, 50);
+  oled.println("Computer: " + String(computer_score));
 
-  lcd.display();
+  oled.display();
 }
 
 
